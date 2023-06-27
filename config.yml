@@ -1,20 +1,19 @@
-# 合理的配置对于运行工具很重要，配置的内容需根据不同的APP定制
-# ****************************************************UI遍历根据需要更改下面的值****************************************************
+# 合理的配置对于运行工具很重要, 配置的内容需根据不同的APP定制
+# ************************** UI遍历根据需要更改下面的值 **************************
 CRITICAL_ELEMENT:
 
-  # ---Android---
-  # Android App测试时，需指定App包名和启动的Activity
-  ANDROID_PACKAGE: com.iotsolution.aidot
-  # ANDROID_PACKAGE: com.iotsolution.preaidot
-  # ANDROID_PACKAGE: com.iotsolution.testaidot
-  ANDROID_MAIN_ACTIVITY: com.leedarson.smarthome.ui.MainActivity
-  # 通过xpath过滤出要点击的元素， 注意值两侧要加单引号''
+  # ------ Android ------
+  # Android App测试，需指定App包名和启动的Activity
+  ANDROID_PACKAGE: com.google.android.calculator
+  ANDROID_MAIN_ACTIVITY: com.android.calculator2.Calculator
+  # 通过xpath过滤出要点击的元素, 注意值两侧要加单引号''
   ANDROID_CLICK_XPATH_HEADER: ' ( string-length(@text)<30  or contains(@text,"允许") ) '
-  # 若App顶、底含有TabBar, 需指定TabBar的id, 若无TabBar注释下行。 多个id时用or拼接: 如'@resource-id="id1" or @resource-id="id2"'
+  # 若App顶、底含有TabBar, 需指定TabBar的id, 若无TabBar注释下行。多个id时用or拼接
+  # 例如 '@resource-id="id1" or @resource-id="id2"'
   # ANDROID_BOTTOM_TAB_BAR_ID: '@resource-id="android:id/tabs"'
 
-  # ---iOS---
-  # 若执行iOS App测试，必需指定以下IOS_开头的内容
+  # ------ iOS ------
+  # 若执行iOS App测试, 必需指定以下IOS_开头的内容
   IOS_BUNDLE_ID: com.alipay
   # 手机桌面上显示的APP的名字
   IOS_BUNDLE_NAME: 支付宝
@@ -23,13 +22,14 @@ CRITICAL_ELEMENT:
   IOS_BOTTOM_TAB_BAR_TYPE: XCUIElementTypeTabBar
   IOS_CLICK_XPATH_HEADER: '@visible="true" and string-length(@value)<30'
 
-  # ---微信小程序---
-  # 微信小程序测试 使用参数 -y 时需指定小程序的名字
+  # ------ 微信小程序 ------
+  # 微信小程序测试，使用参数 -y 时需指定小程序的名字
   WECHAT_MINI_PROGRAM_NAME: 美团
 
-# ****************************************************Monkey测试时根据需要更改下面的值，调节事件发生概率****************************************************
-# 每项为事件随机发生的次数，各项之和为100
+# ************************** Monkey测试时根据需要更改下面的值, 调节事件发生概率 **************************
+# 每项为事件随机发生的次数, 各项之和为100
 MONKEY:
+
   # 滑动
   SWIPE_RATIO: 5
   # 点击
@@ -56,15 +56,14 @@ MONKEY:
   # CLICK_ITEM_XPATH_LIST中指定元素的点击次数
   CLICK_ITEM_BY_XPATH_RATIO: 1
 
-
-# （可选）Monkey的一些特殊事件
+# (可选) Monkey的一些特殊事件
 MONKEY_SPECIAL_ACTION:
 
-  # 设置需要点击的元素的xpath，点击次数由 CLICK_ITEM_BY_XPATH_RATIO 控制， 若找不到相应的元素则会忽略该事件
+  # 设置需要点击的元素的xpath, 点击次数由 CLICK_ITEM_BY_XPATH_RATIO 控制, 若找不到相应的元素则会忽略该事件
   CLICK_ITEM_XPATH_LIST:
   # - '//*[@resource-id="com.xes.jazhanghui.activity:id/tv_item_course"]'
 
-  # 点击特定的点，如：(x,y)为back键的位置时,触发"后退"操作，避免在一个页面停留时间太久
+  # 点击特定的点, 如: (x,y)为back键的位置时, 触发"后退"操作, 避免在一个页面停留时间太久
   MONKEY_SPECIAL_POINT_LIST:
     - '80,160'
 
@@ -72,16 +71,15 @@ MONKEY_SPECIAL_ACTION:
   LONG_PRESS_LIST:
     - '100,250'
 
-  # 设置不点击的区域(圆形)， radius为圆半径， 坐标为不想点击区域的圆心
+  # 设置不点击的区域(圆形), radius为圆半径, 坐标为不想点击区域的圆心
   MONKEY_BLACKLIST_POINT_LIST:
     - 'radius,10'
     - '0,0'
 
-
-# ****************************************************以下内容通常不需要修改****************************************************
-
-# （可选）以下各值主要用于提高测试的效率，根据app着情修改或者不改
+# ************************** 以下内容通常不需要修改 **************************
+# (可选) 以下各值主要用于提高测试的效率, 根据app着情修改或者不改
 LIST:
+
   # UI元素中出现下列文字时 触发back键(iOS 由左向右划触发返回操作)
   PRESS_BACK_TEXT_LIST:
     - 返回
@@ -105,12 +103,12 @@ LIST:
     - XCUIElementTypeTextField
     - XCUIElementTypeSecureTextField
 
-  # 待输入的文本（随机选中后选列表中的一个）
+  # 待输入的文本 (随机选中后选列表中的一个)
   INPUT_TEXT_LIST:
     - '123'
     - 'ABC'
 
-  # 除了APP本身的包名外 根据以下包名判断是否跳出了APP,当app跳转到以下app时被认为是合法，会继续遍历操作
+  # 除了APP本身的包名外 根据以下包名判断是否跳出了APP, 当app跳转到以下app时被认为是合法, 会继续遍历操作
   ANDROID_VALID_PACKAGE_LIST:
     - com.miui.securitycenter
     - com.android.server.telecom
@@ -180,11 +178,10 @@ LIST:
     # Android
     - text
 
-
-# ****************************************************以下内容通常不需要修改****************************************************
-
+# ************************** 以下内容通常不需要修改 **************************
 # 微信的配置 在运行小程序测试时会用到
 WECHAT_CONFIG:
+
   # Android 配置
   WECHAT_ANDROID_PACKAGE: com.tencent.mm
   WECHAT_ANDROID_MAIN_ACTIVITY: com.tencent.mm.ui.LauncherUI
@@ -196,6 +193,7 @@ WECHAT_CONFIG:
 
 # 一些全局的配置
 GENERAL:
+
   # 截屏数量限制
   SCREENSHOT_COUNT: 5000
   # 达到截屏限制数量时删除所有截屏
@@ -210,17 +208,17 @@ GENERAL:
   DEFAULT_WAIT_SEC: 10
   # 查找元素的间隔时间
   DEFAULT_POLLING_INTERVAL_SEC: 5
-  # 是否忽略Crash,设为true时,crash后会重启app然后继续遍历
+  # 是否忽略Crash, 设为true时,crash后会重启app然后继续遍历
   IGNORE_CRASH: true
-  # 遍历的过程中进行向上划动操作  ！！！此项会加长遍历时间！！！
+  # 遍历的过程中进行向上划动操作 !!! 此项会加长遍历时间 !!!
   ENABLE_VERTICAL_SWIPE: false
   # 运行时间限制(分钟)
   CRAWLER_RUNNING_TIME: 10
   # 控制是否生成视频
   GENERATE_VIDEO: true
-  # 控制视频方向，竖屏或模屏
+  # 控制视频方向, 竖屏或模屏
   VIDEO_VERTICAL: true
-  # 每个UI变化X次时，检测是否需要自动登录
+  # 每个UI变化X次时, 检测是否需要自动登录
   USER_LOGIN_INTERVVAL: 5
   # 忽略底部元素Bounds值
   # REMOVE_BOTTOM_BOUND: false
@@ -234,7 +232,6 @@ DEFAULT_VALUE:
   # IOS WDA_PORT
   IOS_WDA_PORT: 8100
 
-
 # 输出更多的log 主要用于调试工具用
 LOG:
   # 将性能数据写入数据库相关的log
@@ -244,16 +241,16 @@ LOG:
   # 是否开启DOM树在log中的显示
   DOM_DISPLAY: false
 
-
 # 时序数据库 用于记录性能数据 与-e 一起使用
 INFLUXDB:
   DB_PORT: 8086
   DB_IP: localhost
 
-# *******************ENABLE_AUTO_LOGIN 为true里需要修改以下内容**************************
-# （可选）自动登录时查找控件所需要的信息,当找到列表中第一个元素时会按顺序操作以下元素。注意xpath中的属性值要加双引号""
+# ************************** ENABLE_AUTO_LOGIN 为true里需要修改以下内容 **************************
+# (可选) 自动登录时查找控件所需要的信息,当找到列表中第一个元素时会按顺序操作以下元素。注意xpath中的属性值要加双引号""
 # 如果不需要自动登录功能以下值不需要修改
 LOGIN_ELEMENTS:
+
   # 开启自动登录功能
   ENABLE_AUTO_LOGIN: false
 
