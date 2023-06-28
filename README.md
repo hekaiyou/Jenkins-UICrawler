@@ -12,7 +12,7 @@
 java -version
 ```
 
-配置 JAVA_HOME 环境变量。
+配置 JAVA_HOME 环境变量（可以用 `java -verbose` 命令查看安装路径）。
 
 ```shell
 JAVA_HOME = X:\xxx\xxx\Java\jre1.x.x_xxx
